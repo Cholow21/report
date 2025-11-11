@@ -110,7 +110,7 @@ export default function Conditional() {
 
       <div className="bg-gray-900 border border-orange-700 rounded-xl shadow-md p-6 w-full max-w-md text-center mb-8">
         <h3 className="text-lg font-semibold text-orange-300 mb-3">
-          Example 1: Conditional Rendering
+          Example 1: Punchline
         </h3>
         <p className="text-gray-400 mb-4">
           The sample below demonstrates how conditional rendering behaves when the button is toggled.
@@ -131,7 +131,7 @@ export default function Conditional() {
 
       <div className="bg-gray-900 border border-orange-700 rounded-xl shadow-md p-6 w-full max-w-md text-center">
         <h3 className="text-lg font-semibold text-orange-300 mb-3">
-          Example 2: Unread Messages
+          Example 2: Messages
         </h3>
 
         {unreadMessages.length > 0 && (
