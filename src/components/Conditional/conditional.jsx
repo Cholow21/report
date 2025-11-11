@@ -5,6 +5,7 @@ export default function Conditional() {
   const [isVisible, setIsVisible] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedCode, setSelectedCode] = useState("");
+  const [unreadMessages, setUnreadMessages] = useState(["a"]);
 
   const codeSnippets = {
     useState: `const [isVisible, setIsVisible] = useState(false);`,
@@ -21,6 +22,16 @@ export default function Conditional() {
   <p>Message is visible.</p>
 ) : (
   <p>Message is hidden.</p>
+)}`,
+
+    UnreadMessages: `const [unreadMessages, setUnreadMessages] = useState([]);
+
+{unreadMessages.length > 0 && (
+  <h1>You have {unreadMessages.length} unread message{unreadMessages.length > 1 ? "s" : ""}!</h1>
+)}
+
+{unreadMessages.length === 0 && (
+  <p>You have no unread messages.</p>
 )}`,
   };
 
@@ -97,9 +108,9 @@ export default function Conditional() {
         </div>
       )}
 
-      <div className="bg-gray-900 border border-orange-700 rounded-xl shadow-md p-6 w-full max-w-md text-center">
+      <div className="bg-gray-900 border border-orange-700 rounded-xl shadow-md p-6 w-full max-w-md text-center mb-8">
         <h3 className="text-lg font-semibold text-orange-300 mb-3">
-          Example Output (Preview)
+          Example 1: Conditional Rendering
         </h3>
         <p className="text-gray-400 mb-4">
           The sample below demonstrates how conditional rendering behaves when the button is toggled.
@@ -115,6 +126,23 @@ export default function Conditional() {
           <p className="mt-4 text-orange-200 font-medium">
             This is a conditionally rendered message.
           </p>
+        )}
+      </div>
+
+      <div className="bg-gray-900 border border-orange-700 rounded-xl shadow-md p-6 w-full max-w-md text-center">
+        <h3 className="text-lg font-semibold text-orange-300 mb-3">
+          Example 2: Unread Messages
+        </h3>
+
+        {unreadMessages.length > 0 && (
+          <h1 className="text-orange-200 font-medium">
+            You have {unreadMessages.length} unread message
+            {unreadMessages.length > 1 ? "s" : ""}!
+          </h1>
+        )}
+
+        {unreadMessages.length === 0 && (
+          <p className="text-gray-400">You have no unread messages.</p>
         )}
       </div>
 
