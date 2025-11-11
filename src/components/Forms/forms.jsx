@@ -14,35 +14,6 @@ export default function Forms() {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedCode, setSelectedCode] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
-    if (type === "checkbox" && name === "interests") {
-      setFormData((prev) => {
-        const newInterests = checked
-          ? [...prev.interests, value]
-          : prev.interests.filter((i) => i !== value);
-        return { ...prev, interests: newInterests };
-      });
-    } else if (type === "checkbox") {
-      setFormData((prev) => ({ ...prev, [name]: checked }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const collected = Object.fromEntries(Object.entries(formData));
-
-    alert(
-      `Form Submitted\n\n` +
-        Object.entries(collected)
-          .map(([key, val]) => `${key}: ${Array.isArray(val) ? val.join(", ") : val}`)
-          .join("\n")
-    );
-  };
-
   const codeSnippets = {
     TextInput: `<input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" />`,
     RadioButtons: `<label><input type="radio" name="gender" value="Male" checked={formData.gender === "Male"} onChange={handleChange}/>Male</label>`,
@@ -98,6 +69,37 @@ export default function Forms() {
   );
 };`;
 
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox" && name === "interests") {
+      setFormData((prev) => {
+        const newInterests = checked
+          ? [...prev.interests, value]
+          : prev.interests.filter((i) => i !== value);
+        return { ...prev, interests: newInterests };
+      });
+    } else if (type === "checkbox") {
+      setFormData((prev) => ({ ...prev, [name]: checked }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const collected = Object.fromEntries(Object.entries(formData));
+
+    alert(
+      `Form Submitted\n\n` +
+        Object.entries(collected)
+          .map(([key, val]) =>
+            `${key}: ${Array.isArray(val) ? val.join(", ") : val}`
+          )
+          .join("\n")
+    );
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-gray-900 to-orange-900 p-4 text-gray-100 relative">
       <h2 className="text-2xl font-semibold text-orange-400 mb-4">
@@ -117,6 +119,7 @@ export default function Forms() {
             <h3 className="text-lg font-semibold text-orange-400">
               Form Code Examples
             </h3>
+
             <button
               onClick={() => setShowPopup(false)}
               className="text-red-500 hover:text-red-700 font-bold text-xl leading-none"
@@ -135,6 +138,7 @@ export default function Forms() {
                 {section}
               </button>
             ))}
+
             <button
               onClick={() => setSelectedCode(fullCode)}
               className="bg-gray-800 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm font-medium"
